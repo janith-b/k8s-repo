@@ -12,6 +12,15 @@ spec:
       containers:
       - name: sample-go-api
         image: jvin911/janiths-public-repo:sample-go-api
+        env:
+        - name: POD_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.podIP
+        - name: POD_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
   replicas: 3
   selector:
     matchLabels:
