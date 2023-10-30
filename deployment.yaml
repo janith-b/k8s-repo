@@ -7,12 +7,12 @@ spec:
   template:
     metadata:
       labels:
-        app: sample
+        app: sample-api
     spec:
       containers:
-      - name: sample-container
-        image: nginxdemos/hello
+      - name: sample-go-api
+        image: jvin911/janiths-public-repo:sample-go-api
   replicas: 3
   selector:
     matchLabels:
-      app: sample
+      app: sample-api
