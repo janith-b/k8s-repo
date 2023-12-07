@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: go-api
+  name: go-mysql-api
   namespace: go-mysql-api
   labels:
     app: go-mysql-api
@@ -20,12 +20,12 @@ spec:
     spec:
       initContainers:
       - name: create-db-schema
-        image: 192.168.8.1:6000/go-mysql-api-init-container-image:alpine
+        image: 192.168.8.1:6000/go-mysql-api-init-container-image:debian
         volumeMounts:
         - name: init-sql-script
           mountPath: /sql_script/script.sql
           subPath: script.sql
-        args: ["-u","$(DB_USER)","-p$(DB_PASS)","-h","$(DB_HOST)","-P","$(DB_PORT)","< script.sql"]
+        command: ["/bin/bash","-c","mysql -u $(DB_USER) -p$(DB_PASS) -h $(DB_HOST) -P $(DB_PORT) < script.sql"]
         # command: ["cat","/etc/resolv.conf"]
         envFrom:
         - configMapRef:
