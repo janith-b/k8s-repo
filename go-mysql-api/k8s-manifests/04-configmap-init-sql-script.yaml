@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: init-sql-script
+  namespace: go-mysql-api
+data:
+  script.sql: |
+    CREATE DATABASE IF NOT EXISTS users; 
+    CREATE TABLE IF NOT EXISTS users.basic_info( userName varchar(50), dob varchar(50), firstName varchar(50), lastName varchar(50), PRIMARY KEY(userName));

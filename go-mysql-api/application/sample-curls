@@ -1,0 +1,3 @@
+curl http://go-mysql-api.vbox-local-cluster.com/addUser --data '{"userName": "janith.bandara", "dob": "11-09-1995","firstName": "Janith","lastName":"Bandara"}' -v
+curl http://go-mysql-api.vbox-local-cluster.com/getUsers -v
+curl http://go-mysql-api.vbox-local-cluster.com/getUser?userName=janih.bandara -v

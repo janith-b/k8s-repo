@@ -1,17 +1,17 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: sample-deployment
-  namespace: sample
+  name: go-api-deployment
+  namespace: go-api
 spec:
   template:
     metadata:
       labels:
-        app: sample-api
+        app: go-api
     spec:
       containers:
-      - name: sample-go-api
-        image: jvin911/janiths-public-repo:sample-go-api
+      - name: go-api-server
+        image: jvin911/janiths-public-repo:sample-go-api-v2
         env:
         - name: POD_IP
           valueFrom:
@@ -24,4 +24,8 @@ spec:
   replicas: 3
   selector:
     matchLabels:
-      app: sample-api
+      app: go-api
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1

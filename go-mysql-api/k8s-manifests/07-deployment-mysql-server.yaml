@@ -25,11 +25,10 @@ spec:
               name: go-mysql-api-env-vars-secrets
               key: DB_PASS
         volumeMounts:
-        - name: mysql-pv
+        - name: mysql-pvc
           mountPath: /var/lib/mysql
       volumes:
-      - name: mysql-pv
-        hostPath: 
-          path: /data
-          type: Directory
+      - name: mysql-pvc
+        persistentVolumeClaim:
+          claimName: mysql-pvc
     

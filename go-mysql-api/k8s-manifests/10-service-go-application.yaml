@@ -4,7 +4,7 @@ metadata:
   name: go-mysql-api-service
   namespace: go-mysql-api
 spec:
-  type: NodePort
+  type: ClusterIP
   ports:
   - name: go-application-port
     port: 8000

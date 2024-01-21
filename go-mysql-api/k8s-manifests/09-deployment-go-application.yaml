@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: go-mysql-api
+  name: go-mysql-api-deployment
   namespace: go-mysql-api
   labels:
     app: go-mysql-api
@@ -20,21 +20,24 @@ spec:
     spec:
       initContainers:
       - name: create-db-schema
-        image: 192.168.8.1:6000/go-mysql-api-init-container-image:debian
+        image: jvin911/janiths-public-repo:go-mysql-api-init-image
+        imagePullPolicy: Always
         volumeMounts:
         - name: init-sql-script
           mountPath: /sql_script/script.sql
           subPath: script.sql
-        command: ["/bin/bash","-c","mysql -u $(DB_USER) -p$(DB_PASS) -h $(DB_HOST) -P $(DB_PORT) < script.sql"]
-        # command: ["cat","/etc/resolv.conf"]
+        args:
+        - "/sql_script/script.sql"
         envFrom:
         - configMapRef:
             name: go-mysql-api-env-vars
         - secretRef:
             name: go-mysql-api-env-vars-secrets
+        restartPolicy: OnFailure
       containers:
       - name: go-mysql-api
-        image: 192.168.8.1:6000/go-mysql-api
+        image: jvin911/janiths-public-repo:go-mysql-api
+        imagePullPolicy: Always
         envFrom:
         - configMapRef:
             name: go-mysql-api-env-vars
