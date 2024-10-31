@@ -1,0 +1,17 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: go-rest-api-pre-sync-hook
+  namespace: go-api
+  annotations:
+    argocd.argoproj.io/hook: PreSync
+spec:
+  template:
+    spec:
+      containers:
+      - name: go-rest-api-pre-sync-hook
+        image: alpine
+        command: ["/bin/sh"]
+        args: ["-c", "apk --update add curl && curl https://webhook.site/d0485b03-881f-4b83-aa68-0041fbadb19c -d '{\"Message\": \"PreSync Hook executed successfully\"}'"]
+      restartPolicy: Never
+  backoffLimit: 4
