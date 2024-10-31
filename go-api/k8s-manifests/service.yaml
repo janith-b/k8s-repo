@@ -4,7 +4,7 @@ metadata:
   namespace: go-api
   name: go-api-service
 spec:
-  type: ClusterIP
+  type: NodePort
   ports:
   - port: 8080
     targetPort: 8080
