@@ -21,6 +21,6 @@ spec:
               name: newrelic-secret
               key: license_key
         command: ["/bin/sh"]
-        args: ["-c", "apk --update add curl && sleep 120 && curl -s https://api.newrelic.com/graphql -H 'Content-Type: application/json' -H \"API-Key: $NR_KEY\" --data-binary '{\"query\":\"mutation {alertsMutingRuleUpdate(accountId: 4312827 id: 60426444 rule: { enabled: false }) {name}}\", \"variables\":\"\"}' && curl -s https://api.newrelic.com/graphql -H 'Content-Type: application/json' -H \"API-Key: $NR_KEY\" --data-binary '{\"query\":\"mutation {alertsMutingRuleUpdate(accountId: 4312827 id: 60426450 rule: { enabled: false }) {name}}\", \"variables\":\"\"}'"]
+        args: ["-c", "apk --update add curl && sleep 5 && curl -s https://api.newrelic.com/graphql -H 'Content-Type: application/json' -H \"API-Key: $NR_KEY\" --data-binary '{\"query\":\"mutation {alertsMutingRuleUpdate(accountId: 4312827 id: 60426444 rule: { enabled: false }) {name}}\", \"variables\":\"\"}' && curl -s https://api.newrelic.com/graphql -H 'Content-Type: application/json' -H \"API-Key: $NR_KEY\" --data-binary '{\"query\":\"mutation {alertsMutingRuleUpdate(accountId: 4312827 id: 60426450 rule: { enabled: false }) {name}}\", \"variables\":\"\"}'"]
       restartPolicy: Never
   backoffLimit: 4
