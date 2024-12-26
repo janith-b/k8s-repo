@@ -22,7 +22,11 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: metadata.name
-  replicas: 3
+        - name: TARGET_REVISION
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.annotations['argo-cd.argoproj.io/source-target-revision']
+  replicas: 1
   selector:
     matchLabels:
       app: go-api
