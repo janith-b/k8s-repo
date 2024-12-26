@@ -11,7 +11,7 @@ spec:
     spec:
       containers:
       - name: go-api-server
-        image: jvin911/janiths-public-repo:sample-go-api-v3
+        image: jvin911/janiths-public-repo:sample-go-api-v2
         env:
         - name: POD_IP
           valueFrom:
