@@ -1,0 +1,23 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: go-api-pre-sync-job
+  namespace: go-api
+  annotations:
+    argocd.argoproj.io/hook: PreSync
+spec:
+  template:
+    metadata:
+      annotations:
+        linkerd.io/inject: disabled
+    spec:
+      containers:
+      - name: go-api-pre-sync-job
+        image: alpine
+        env:
+        - name: Test
+          value: "123"
+        command: ["/bin/sh"]
+        args: ["-c", "echo $Test"]
+      restartPolicy: Never
+  backoffLimit: 4
