@@ -1,0 +1,18 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: go-app-01-ingress
+  namespace: go-api
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: go-app.local-cluster.internal
+    http:
+      paths:
+      - backend:
+          service:
+            name: go-app-01-service
+            port:
+              number: 8080
+        path: /app-01
+        pathType: Prefix

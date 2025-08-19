@@ -1,17 +1,17 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: go-api-deployment
+  name: go-app-01-deployment
   namespace: go-api
 spec:
   template:
     metadata:
       labels:
-        app: go-api
+        app: go-app-01
     spec:
       containers:
       - name: go-api-server
-        image: jvin911/janiths-public-repo:sample-go-api-v2
+        image: jvin911/janiths-public-repo:sample-go-application-01
         env:
         - name: POD_IP
           valueFrom:
@@ -21,10 +21,12 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: metadata.name
-  replicas: 3
+        - name: MESSAGE
+          value: "Hello from Application 01"
+  replicas: 1
   selector:
     matchLabels:
-      app: go-api
+      app: go-app-01
   strategy:
     type: RollingUpdate
     rollingUpdate:

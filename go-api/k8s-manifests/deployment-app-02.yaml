@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: go-app-02-deployment
+  namespace: go-api
+spec:
+  template:
+    metadata:
+      labels:
+        app: go-app-02
+    spec:
+      containers:
+      - name: go-api-server
+        image: jvin911/janiths-public-repo:sample-go-application-01
+        env:
+        - name: POD_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.podIP
+        - name: POD_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+        - name: MESSAGE
+          value: "Hello from Application 02"
+  replicas: 1
+  selector:
+    matchLabels:
+      app: go-app-02
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1

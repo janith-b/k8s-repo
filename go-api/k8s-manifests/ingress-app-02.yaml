@@ -1,19 +1,18 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  annotations:
-    kubernetes.io/ingress.class: nginx
-  name: go-api-ingress
+  name: go-app-02-ingress
   namespace: go-api
 spec:
+  ingressClassName: nginx
   rules:
-  - host: go-api.vbox-local-cluster.com
+  - host: go-app.local-cluster.internal
     http:
       paths:
       - backend:
           service:
-            name: go-api-service
+            name: go-app-02-service
             port:
               number: 8080
-        path: /
+        path: /app-02
         pathType: Prefix
