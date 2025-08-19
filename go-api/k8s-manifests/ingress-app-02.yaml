@@ -3,6 +3,8 @@ kind: Ingress
 metadata:
   name: go-app-02-ingress
   namespace: go-api
+  annotations:
+    ingress.kubernetes.io/rewrite-target: /app-02
 spec:
   ingressClassName: nginx
   rules:
