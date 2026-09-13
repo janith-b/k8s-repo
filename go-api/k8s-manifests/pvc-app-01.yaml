@@ -9,4 +9,4 @@ spec:
   resources:
     requests:
       storage: 1Gi
-  volumeName: go-app-01-pv-v2
+  volumeName: go-app-01-pv
