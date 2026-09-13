@@ -23,6 +23,13 @@ spec:
               fieldPath: metadata.name
         - name: MESSAGE
           value: "Hello from Application 02"
+        volumeMounts:
+        - mountPath: "/var/www/html"
+          name: go-app-02-volume
+      volumes:
+        - name: go-app-02-volume
+          persistentVolumeClaim:
+            claimName: go-app-02-pvc
   replicas: 1
   selector:
     matchLabels:
