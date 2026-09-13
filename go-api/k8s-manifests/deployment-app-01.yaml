@@ -23,6 +23,10 @@ spec:
               fieldPath: metadata.name
         - name: MESSAGE
           value: "Hello from Application 01"
+      volumes:
+        - name: go-app-01-volume
+          persistentVolumeClaim:
+            claimName: go-app-01-pvc
   replicas: 1
   selector:
     matchLabels:
