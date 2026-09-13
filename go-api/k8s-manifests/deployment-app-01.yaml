@@ -29,7 +29,7 @@ spec:
       volumes:
         - name: go-app-01-volume
           persistentVolumeClaim:
-            claimName: go-app-01-pvc
+            claimName: go-app-01-pvc-v2
   replicas: 10
   selector:
     matchLabels:

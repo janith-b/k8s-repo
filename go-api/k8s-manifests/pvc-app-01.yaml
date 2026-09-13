@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: go-app-01-pvc
+  name: go-app-01-pvc-v2
   namespace: go-api
 spec:
   accessModes:
@@ -9,4 +9,4 @@ spec:
   resources:
     requests:
       storage: 1Gi
-  volumeName: go-app-01-pv
+  volumeName: go-app-01-pv-v2
