@@ -23,6 +23,9 @@ spec:
               fieldPath: metadata.name
         - name: MESSAGE
           value: "Hello from Application 01"
+        volumeMounts:
+        - mountPath: "/var/www/html"
+          name: go-app-01-volume
       volumes:
         - name: go-app-01-volume
           persistentVolumeClaim:
